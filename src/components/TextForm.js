@@ -7,23 +7,27 @@ export default function TextForm(props) {
         // console.log("Uppercase option clicked.");
         let new_text = text.toUpperCase();
         setText(new_text);
-    }
+        props.showAlert('Capital util selected', 'success');
+    };
 
 
     // set text to lower case
     const handleLowerCaseClick = () => {
         setText(text.toLowerCase());
+        props.showAlert('Lower case util selected', 'success');
     }
 
     // clear the text from textarea
     const handleClearClick = () =>{
         setText('');
+        props.showAlert('Clear text util selected', 'success');
     }
 
     // Trim text
     const handleTrimTextClick = () => {
         let trimmed_text = text.trim()
         setText(trimmed_text);
+        props.showAlert('Trimmed text util selected', 'success');
     }
 
     // OnChange even on text area to insert the text
@@ -31,6 +35,7 @@ export default function TextForm(props) {
         // console.log("Handle on change text.");
         setText(event.target.value);
     }
+
 
     // logic to write the entered text in camel case
     const handleCamelCaseClick = () => {
@@ -47,7 +52,7 @@ export default function TextForm(props) {
                 }
 
             }
-
+            props.showAlert('Camel case util selected', 'success');
             return camelCaseText;
         }
         let camelCaseText = toCamelCase(text);
@@ -59,6 +64,7 @@ export default function TextForm(props) {
     const handleCopyToClipboard = async () => {
         try {
           await navigator.clipboard.writeText(text);
+          props.showAlert('your text has been copied', 'success');
         } catch (error) {
           console.error('Failed to copy text:', error);
         }
@@ -85,7 +91,7 @@ export default function TextForm(props) {
         <div className="container my-5" style={{color: props.mode==='dark'?'white':'black'}}>
             <h4>Your text summary</h4>
 
-            <p><b>{text.length===0?0:text.split(" ").length}</b> words, and <b>{text.length}</b> characters</p>
+            <p><b>{text.length===0 ? 0 : text.includes(" ") === true ? text.trim().split(/\s+/).length : text.split(" ").length}</b> words, and <b>{text.length}</b> characters</p>
 
             <p>{0.008 * text.split(" ").length} need to spend to read the above text.</p>
 

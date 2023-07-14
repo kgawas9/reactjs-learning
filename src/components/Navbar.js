@@ -19,9 +19,13 @@ export default function Navbar(props) {
                 <a className="nav-link" href="/">{props.aboutText}</a>
               </li>
             </ul>
+            <button class="btn rounded-circle" style={{backgroundColor: "blue", marginRight: "10px"}}></button>
+            <button class="btn rounded-circle" style={{backgroundColor: "red", marginRight: "10px"}}></button>
+            <button class="btn rounded-circle" style={{backgroundColor: "green", marginRight: "10px"}}></button>
+
             <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <button className="btn btn-outline-success" type="submit" style={{marginRight: "10px"}}>Search</button>
             </form>
 
             <div className={`form-check form-switch text-${props.mode==='light'?'dark':'light'}`}>
